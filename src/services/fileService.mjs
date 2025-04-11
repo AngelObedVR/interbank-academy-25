@@ -7,10 +7,13 @@ class FileService {
     try {
       const absolutePath = path.resolve(filePath);
       const fileContent = fs.readFileSync(absolutePath, 'utf8');
-      
+
       // Dividir el contenido por líneas y eliminar espacios en blanco
-      const lines = fileContent.split('\n').map(line => line.trim()).filter(line => line);
-      
+      const lines = fileContent
+        .split('\n')
+        .map((line) => line.trim())
+        .filter((line) => line);
+
       // Procesar según si tiene encabezados o no
       let dataLines;
       if (hasHeaders) {
@@ -22,14 +25,14 @@ class FileService {
         dataLines = lines;
         console.log('Procesando archivo sin encabezados');
       }
-      
+
       // Convertir cada línea en un objeto de transacción
-      return dataLines.map(line => {
+      return dataLines.map((line) => {
         const values = line.split(',');
         const id = values[0];
         const tipo = values[1];
         const monto = values[2];
-        
+
         return new Transaction(id, tipo, monto);
       });
     } catch (error) {
