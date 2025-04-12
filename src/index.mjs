@@ -6,17 +6,12 @@ const args = process.argv.slice(2);
 const defaultFilePath = './data/data.csv';
 const filePath = args[0] || defaultFilePath;
 
-// Obtener la opción de encabezados (por defecto: true)
-const headersOption = args[1]?.toLowerCase();
-const hasHeaders = headersOption !== 'noheaders';
-
 function main() {
   try {
     console.log(`Procesando archivo: ${filePath}`);
-    console.log(`Procesando con encabezados: ${hasHeaders ? 'Sí' : 'No'}`);
     
     // Leer y procesar transacciones con la opción de encabezados
-    const transactions = FileService.readTransactionsFromCSV(filePath, hasHeaders);
+    const transactions = FileService.readTransactionsFromCSV(filePath);
     
     if (transactions.length === 0) {
       console.log('No se encontraron transacciones en el archivo.');

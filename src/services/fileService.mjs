@@ -3,7 +3,7 @@ import path from 'path';
 import Transaction from '../models/transaction.mjs';
 
 class FileService {
-  static readTransactionsFromCSV(filePath, hasHeaders = true) {
+  static readTransactionsFromCSV(filePath) {
     try {
       const absolutePath = path.resolve(filePath);
       const fileContent = fs.readFileSync(absolutePath, 'utf8');
@@ -14,16 +14,25 @@ class FileService {
         .map((line) => line.trim())
         .filter((line) => line);
 
-      // Procesar según si tiene encabezados o no
-      let dataLines;
-      if (hasHeaders) {
-        // Extraer los encabezados y removerlos de las líneas
-        const headers = lines[0].split(',');
+      // Detectar automáticamente si tiene encabezados
+      const firstLine = lines[0].split(',');
+      let dataLines = lines;
+      let hasHeaders = false;
+
+      // Función auxiliar para verificar si un string es numérico
+      const isNumeric = (str) => {
+        return !isNaN(str) && !isNaN(parseFloat(str));
+      };
+
+      // Verificar si todos los valores en la primera línea son texto (no numéricos)
+      const allTextHeaders = firstLine.every(item => !isNumeric(item));
+      
+      if (allTextHeaders && lines.length > 1) {
+        hasHeaders = true;
         dataLines = lines.slice(1);
-        console.log(`Encabezados encontrados: ${headers.join(', ')}`);
+        console.log(`Encabezados detectados: ${firstLine.join(', ')}`);
       } else {
-        dataLines = lines;
-        console.log('Procesando archivo sin encabezados');
+        console.log("No se detectaron encabezados, procesando todos los datos.");
       }
 
       // Convertir cada línea en un objeto de transacción
