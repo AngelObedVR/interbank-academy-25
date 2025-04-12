@@ -21,22 +21,21 @@ No se requieren dependencias externas. El proyecto utiliza módulos nativos de N
 Para procesar un archivo CSV:
 
 ```bash
-node src/index.mjs [ruta_al_archivo.csv] [opción_encabezados]
+node src/index.mjs [ruta_al_archivo.csv]
 ```
 
 Parámetros:
 
 - `ruta_al_archivo.csv`: Ruta al archivo CSV (opcional, por defecto: `./data/data.csv`)
-- `opción_encabezados`: Usar "noheaders" si el archivo no contiene encabezados (opcional)
 
 Ejemplos:
 
 ```bash
-# Procesar archivo con encabezados (por defecto)
-node src/index.mjs ./data/transacciones.csv
+# Procesar archivo por defecto
+node src/index.mjs
 
-# Procesar archivo sin encabezados
-node src/index.mjs ./data/transacciones.csv noheaders
+# Procesar archivo especificando la ruta
+node src/index.mjs ./data/data.csv
 ```
 
 ## Enfoque y Solución
