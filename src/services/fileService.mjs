@@ -8,7 +8,6 @@ class FileService {
       const absolutePath = path.resolve(filePath);
       const fileContent = fs.readFileSync(absolutePath, 'utf8');
 
-      // Dividir el contenido por líneas y eliminar espacios en blanco
       const lines = fileContent
         .split('\n')
         .map((line) => line.trim())
@@ -19,12 +18,11 @@ class FileService {
       let dataLines = lines;
       let hasHeaders = false;
 
-      // Función auxiliar para verificar si un string es numérico
+      // Función auxiliar
       const isNumeric = (str) => {
         return !isNaN(str) && !isNaN(parseFloat(str));
       };
 
-      // Verificar si todos los valores en la primera línea son texto (no numéricos)
       const allTextHeaders = firstLine.every(item => !isNumeric(item));
       
       if (allTextHeaders && lines.length > 1) {
@@ -35,7 +33,6 @@ class FileService {
         console.log("No se detectaron encabezados, procesando todos los datos.");
       }
 
-      // Convertir cada línea en un objeto de transacción
       return dataLines.map((line) => {
         const values = line.split(',');
         const id = values[0];
