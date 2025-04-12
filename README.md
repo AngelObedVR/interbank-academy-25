@@ -46,6 +46,34 @@ La aplicación implementa un enfoque modular utilizando:
 2. **Servicios**: Manejan operaciones de I/O como lectura de archivos.
 3. **Utilidades**: Proporcionan funciones auxiliares para formateo y análisis.
 
+### Formato de Datos
+
+El archivo CSV debe tener el siguiente formato:
+
+```csv
+id,tipo,monto
+1,Crédito,100.00
+2,Débito,50.00
+```
+
+### Salida
+
+La aplicación mostrará un reporte con:
+
+- Balance final
+- Transacción de mayor monto
+- Conteo de transacciones por tipo
+
+### Documentación y Calidad del Código
+
+El código sigue las siguientes prácticas:
+
+- **Modularidad**: Separación clara de responsabilidades entre componentes
+- **Nombres descriptivos**: Variables y funciones con nombres que explican su propósito
+- **Manejo de errores**: Gestión adecuada de excepciones y casos bordes
+- **Comentarios**: Documentación de funciones principales y lógica compleja
+- **ES Modules**: Uso de sintaxis moderna de JavaScript para importaciones/exportaciones
+
 ## Estructura del Proyecto
 
 ```plaintext
@@ -62,30 +90,4 @@ transacciones-cli/
 └── README.md         # Documentación
 ```
 
-## Formato de Datos
 
-El archivo CSV debe tener el siguiente formato:
-
-```csv
-id,tipo,monto
-1,Crédito,100.00
-2,Débito,50.00
-```
-
-## Salida
-
-La aplicación mostrará un reporte con:
-
-- Balance final
-- Transacción de mayor monto
-- Conteo de transacciones por tipo
-
-## Documentación y Calidad del Código
-
-El código sigue las siguientes prácticas:
-
-- **Modularidad**: Separación clara de responsabilidades entre componentes
-- **Nombres descriptivos**: Variables y funciones con nombres que explican su propósito
-- **Manejo de errores**: Gestión adecuada de excepciones y casos bordes
-- **Comentarios**: Documentación de funciones principales y lógica compleja
-- **ES Modules**: Uso de sintaxis moderna de JavaScript para importaciones/exportaciones
